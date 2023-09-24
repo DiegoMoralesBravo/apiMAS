@@ -1,2 +1,9 @@
 Flask
 gunicorn
+torch
+numpy
+opencv-python
+matplotlib
+onnx
+onnxruntime
+git+https://github.com/facebookresearch/segment-anything.git
