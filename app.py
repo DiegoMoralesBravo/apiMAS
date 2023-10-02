@@ -6,4 +6,4 @@ CORS(app)
 
 @app.route('/')
 def hello_world():
-    return 'Test Diego Morales Iker Toscano'
+    return 'Conexion Backend Iker - Diego'
