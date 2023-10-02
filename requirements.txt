@@ -7,3 +7,4 @@ matplotlib
 onnx
 onnxruntime
 git+https://github.com/facebookresearch/segment-anything.git
+Flask-CORS
