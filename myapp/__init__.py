@@ -1,7 +1,6 @@
 import os
 
 from flask import Flask 
-import SQLAlchemy as sa
 from .extensions import db
 from .routes import main
 
