@@ -3,6 +3,7 @@ from flask import Flask
 from .extensions import db
 from .routes import main
 from .models import User
+from flask_cors import CORS
 
 def create_app():
     
@@ -22,5 +23,8 @@ def create_app():
         new_user = User(email='diego@gmail.com', password='12345')
         db.session.add(new_user)
         db.session.commit()
+    
+    CORS(app, resources={r"/*": {"origins": "https://frontmastest.onrender.com"}})
+
         
     return app
