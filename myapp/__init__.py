@@ -18,9 +18,9 @@ def create_app():
         db.drop_all()
         db.create_all()
         app.logger.info('Initialized the database!')
-    
-    new_user = User(email='ejemplo@example.com', password='contraseña')
-    db.session.add(new_user)
-    db.session.commit()
+        
+        new_user = User(email='ejemplo@example.com', password='contraseña')
+        db.session.add(new_user)
+        db.session.commit()
         
     return app
