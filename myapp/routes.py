@@ -8,7 +8,7 @@ main = Blueprint('main', __name__)
 @main.route('/')
 def index():
     users = User.query.all()
-    users_list_html = [f"<li>{ user.username }</li>" for user in users]
+    users_list_html = [f"<li>{ user.email }</li>" for user in users]
     return f"<ul>{''.join(users_list_html)}</ul>"
 
 @main.route('/add/<username>')
