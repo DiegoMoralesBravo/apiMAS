@@ -14,15 +14,14 @@ def index():
 def add_user():
     # Get data from the request
     data = request.json
-    print(data)
     email = data.get('email')
     occupation = data.get('occupation')
     password = data.get('password')
-    confirmPassword = data.get('confirmPassword')
 
-    # Check if passwords match
-    if password != confirmPassword:
-        return jsonify({"message": "Passwords do not match"}), 400
+    # Check if user with the given email already exists
+    existing_user = User.query.filter_by(username=email).first()
+    if existing_user:
+        return jsonify({"message": "Email already in use"}), 400
 
     # If validation passes, add the user to the database
     user = User(username=email, password=password, occupation=occupation)
