@@ -24,7 +24,7 @@ def create_app():
         app.logger.info('Initialized the database!')
         
         # Consider removing hardcoded user or ensuring it's only for testing
-        new_user = User(email='diego@gmail.com', password='12345')
+        new_user = User(email='diego@gmail.com', password='12345', occupation='student')
         db.session.add(new_user)
         db.session.commit()
         
