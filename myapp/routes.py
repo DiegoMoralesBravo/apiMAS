@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, url_for, request, jsonify
 from .extensions import db
 from .models import User
+from flask_cors import CORS
 
 main = Blueprint('main', __name__)
 
