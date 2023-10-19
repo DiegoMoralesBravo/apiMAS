@@ -19,7 +19,7 @@ def create_app():
 
     # Check if the database needs to be initialized
     with app.app_context():
-        # Removed the drop_all() for safety reasons
+        db.drop_all()
         db.create_all()
         app.logger.info('Initialized the database!')
         
