@@ -14,12 +14,10 @@ def index():
 @main.route('/add', methods=['POST'])
 def add():
     # Get data from the request
-    user_data = request.get_json()  # Obtener el objeto JSON de la solicitud
-    response = {'message': 'Usuario creado exitosamente'}
-    return jsonify(response), 201
-    # email = data['email']
-    # occupation = data['occupation']
-    # password = data['password']
+    data = request.get_json()  # Obtener el objeto JSON de la solicitud
+    email = data['email']
+    occupation = data['occupation']
+    password = data['password']
 
     # # Check if user with the given email already exists
     # existing_user = User.query.filter_by(username=email).first()
@@ -32,7 +30,7 @@ def add():
     # db.session.commit()
 
     # # Return success response
-    # return jsonify({"message": "User added successfully"}), 201
+    return jsonify({"message": "User added successfully"}), 201
 
 @main.route('/userValidation', methods=['POST'])
 def userValidation():
