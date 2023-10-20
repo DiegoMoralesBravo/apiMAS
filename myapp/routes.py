@@ -15,17 +15,20 @@ def index():
 def add():
     # Get data from the request
     data = request.get_json()  # Obtener el objeto JSON de la solicitud
+    print(data)
+    print('hola')
     email = data['email']
     occupation = data['occupation']
     password = data['password']
-
+    print(email)
     # Check if user with the given email already exists
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
         return jsonify({"message": "Email already in use"}), 400
-
+    print('hola2')
     # If validation passes, add the user to the database
     user = User(email=email, password=password, occupation=occupation)
+    print('hola3')
     db.session.add(user)
     db.session.commit()
 
