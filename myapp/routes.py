@@ -37,13 +37,9 @@ def userValidation():
     email = data['email']
     password = data['password']
     
-    print(data)
-
     # Check if user with the given email exists
     existing_user = User.query.filter_by(email=email).first()
-    
-    print(existing_user)
-    
+        
     if not existing_user:
         return jsonify({"message": "User does not exist"}), 404
 
@@ -52,4 +48,4 @@ def userValidation():
         return jsonify({"message": "Incorrect password"}), 401
 
     # If validation passes, return success response
-    return jsonify({"message": "User validated successfully"}), 200
+    return jsonify({"message": "User validated successfully", "user": email}), 200
