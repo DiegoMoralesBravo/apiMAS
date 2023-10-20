@@ -14,23 +14,25 @@ def index():
 @main.route('/add', methods=['POST'])
 def add():
     # Get data from the request
-    data = request.get_json()
-    email = data['email']
-    occupation = data['occupation']
-    password = data['password']
+    user_data = request.get_json()  # Obtener el objeto JSON de la solicitud
+    response = {'message': 'Usuario creado exitosamente'}
+    return jsonify(response), 201
+    # email = data['email']
+    # occupation = data['occupation']
+    # password = data['password']
 
-    # Check if user with the given email already exists
-    existing_user = User.query.filter_by(username=email).first()
-    if existing_user:
-        return jsonify({"message": "Email already in use"}), 400
+    # # Check if user with the given email already exists
+    # existing_user = User.query.filter_by(username=email).first()
+    # if existing_user:
+    #     return jsonify({"message": "Email already in use"}), 400
 
-    # If validation passes, add the user to the database
-    user = User(username=email, password=password, occupation=occupation)
-    db.session.add(user)
-    db.session.commit()
+    # # If validation passes, add the user to the database
+    # user = User(username=email, password=password, occupation=occupation)
+    # db.session.add(user)
+    # db.session.commit()
 
-    # Return success response
-    return jsonify({"message": "User added successfully"}), 201
+    # # Return success response
+    # return jsonify({"message": "User added successfully"}), 201
 
 @main.route('/userValidation', methods=['POST'])
 def userValidation():
