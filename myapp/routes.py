@@ -12,7 +12,7 @@ def index():
     return f"<ul>{''.join(users_list_html)}</ul>"
 
 @main.route('/add', methods=['POST'])
-def add_user():
+def add():
     # Get data from the request
     data = request.get_json()
     email = data['email']
