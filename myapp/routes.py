@@ -36,6 +36,8 @@ def userValidation():
     data = request.get_json()
     email = data['email']
     password = data['password']
+    
+    print(data)
 
     # Check if user with the given email exists
     existing_user = User.query.filter_by(email=email).first()
