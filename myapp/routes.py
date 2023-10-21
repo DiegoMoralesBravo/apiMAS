@@ -49,3 +49,12 @@ def userValidation():
 
     # If validation passes, return success response
     return jsonify({"message": "User validated successfully", "user": email}), 200
+
+
+@main.route('/generation', methods=['POST'])
+def generation():
+    # Get data from the request
+    data = request.get_json()
+    
+    
+    return jsonify({"message": "Test completed"}), 200
