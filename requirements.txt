@@ -26,7 +26,7 @@ nvidia-nvtx-cu12==12.1.105
 psycopg2-binary==2.9.5
 SQLAlchemy==1.4.46
 sympy==1.10.1
-torch==2.1.0
+torch==1.13.0
 triton==2.1.0
 typing_extensions==4.8.0
 Werkzeug==2.2.2
