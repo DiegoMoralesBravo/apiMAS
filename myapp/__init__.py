@@ -4,6 +4,8 @@ from .extensions import db
 from .routes import main
 from .models import User
 from flask_cors import CORS
+from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
+
 
 def create_app():
     
@@ -28,4 +30,17 @@ def create_app():
         db.session.add(new_user)
         db.session.commit()
         
+    
+    model_type = "vit_h"
+
+    device = "cuda"
+    
+    sam_checkpoint = './https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth''
+
+
+    sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
+    sam.to(device=device)
+
+    mask_generator = SamAutomaticMaskGenerator(sam)   
+     
     return app
