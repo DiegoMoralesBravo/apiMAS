@@ -1,16 +1,16 @@
 click==8.1.3
-filelock==3.12.2
+filelock==3.12.4
 Flask==2.2.2
 Flask-Cors==4.0.0
 Flask-SQLAlchemy==3.0.2
-fsspec==2023.1.0
+fsspec==2023.10.0
 greenlet==2.0.1
 gunicorn==20.1.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.1
 mpmath==1.3.0
-networkx==2.6.3
+networkx==3.2
 nvidia-cublas-cu12==12.1.3.1
 nvidia-cuda-cupti-cu12==12.1.105
 nvidia-cuda-nvrtc-cu12==12.1.105
@@ -24,9 +24,10 @@ nvidia-nccl-cu12==2.18.1
 nvidia-nvjitlink-cu12==12.3.52
 nvidia-nvtx-cu12==12.1.105
 psycopg2-binary==2.9.5
+segment-anything @ git+https://github.com/facebookresearch/segment-anything.git@6fdee8f2727f4506cfbbe553e23b895e27956588
 SQLAlchemy==1.4.46
-sympy==1.10.1
-torch==1.13.0
+sympy==1.12
+torch==2.1.0
 triton==2.1.0
-typing_extensions==4.7.1
+typing_extensions==4.8.0
 Werkzeug==2.2.2
