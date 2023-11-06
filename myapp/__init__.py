@@ -35,11 +35,11 @@ def create_app():
 
     device = "cuda"
     
-    sam_checkpoint = './https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth'
+    # sam_checkpoint = './https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth'
 
 
-    sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
-    sam.to(device=device)
+    # sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
+    # sam.to(device=device)
 
     mask_generator = SamAutomaticMaskGenerator(sam)   
      
