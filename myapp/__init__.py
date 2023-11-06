@@ -34,7 +34,7 @@ def create_app():
     
     model_type = "vit_h"
 
-    device = "cuda"
+    device = "cpu"
     sam_checkpoint = 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth'
 
     # El directorio donde quieres guardar el modelo
