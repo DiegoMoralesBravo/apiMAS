@@ -41,6 +41,6 @@ def create_app():
     # sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
     # sam.to(device=device)
 
-    mask_generator = SamAutomaticMaskGenerator(sam)   
+    # mask_generator = SamAutomaticMaskGenerator(sam)   
      
     return app
