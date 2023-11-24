@@ -2,6 +2,8 @@ import os
 import requests
 import zipfile
 import io
+from git import Repo
+
 from flask import Flask 
 from .extensions import db
 from .routes import main
@@ -9,22 +11,6 @@ from .models import User
 from flask_cors import CORS
 # from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
 from pathlib import Path
-
-def download_and_extract_repo(repo_url, dest_folder):
-    """
-    Descarga un repositorio de GitHub como un archivo ZIP y lo extrae en un directorio específico.
-    """
-    # Cambia la URL del repositorio a la URL del archivo ZIP
-    zip_url = repo_url.replace("github.com", "codeload.github.com").rstrip('.git') + '/zip/refs/heads/main'
-
-    # Realiza la solicitud para descargar el archivo
-    response = requests.get(zip_url)
-    response.raise_for_status()  # Asegúrate de que la descarga fue exitosa
-
-    # Descomprime el archivo ZIP en el directorio deseado
-    with zipfile.ZipFile(io.BytesIO(response.content)) as zip_ref:
-        zip_ref.extractall(dest_folder)
-    print(f"Repositorio descargado y descomprimido en {dest_folder}")
 
 def create_app():
     
@@ -87,6 +73,10 @@ def create_app():
     # sam_checkpoint = str(file_path)
 
     # Ejemplo de uso
-    download_and_extract_repo("https://github.com/ByungKwanLee/Full-Segment-Anything.git", sam_path)
+    
+
+    # Clone a repository
+    Repo.clone_from('https://github.com/user/repository.git', sam_path)
+    print(os.listdir(sam_path))
      
     return app
