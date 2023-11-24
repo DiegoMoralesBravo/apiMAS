@@ -3,6 +3,7 @@ import requests
 import zipfile
 import io
 from git import Repo
+import sys
 
 from flask import Flask 
 from .extensions import db
@@ -76,7 +77,13 @@ def create_app():
     
 
     # Clone a repository
-    Repo.clone_from('https://github.com/ByungKwanLee/Full-Segment-Anything.git', sam_path)
+    Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', sam_path)
     print(os.listdir(sam_path))
-     
+    sys.path.append(sam_path)
+
+    from test import testChido
+
+    # Use the function
+    result = testChido()
+
     return app
