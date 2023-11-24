@@ -1,12 +1,30 @@
 import os
 import requests
+import zipfile
+import io
 from flask import Flask 
 from .extensions import db
 from .routes import main
 from .models import User
 from flask_cors import CORS
-from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
+# from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
 from pathlib import Path
+
+def download_and_extract_repo(repo_url, dest_folder):
+    """
+    Descarga un repositorio de GitHub como un archivo ZIP y lo extrae en un directorio específico.
+    """
+    # Cambia la URL del repositorio a la URL del archivo ZIP
+    zip_url = repo_url.replace("github.com", "codeload.github.com").rstrip('.git') + '/zip/refs/heads/main'
+
+    # Realiza la solicitud para descargar el archivo
+    response = requests.get(zip_url)
+    response.raise_for_status()  # Asegúrate de que la descarga fue exitosa
+
+    # Descomprime el archivo ZIP en el directorio deseado
+    with zipfile.ZipFile(io.BytesIO(response.content)) as zip_ref:
+        zip_ref.extractall(dest_folder)
+    print(f"Repositorio descargado y descomprimido en {dest_folder}")
 
 def create_app():
     
@@ -38,11 +56,17 @@ def create_app():
     # sam_checkpoint = 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth'
 
     # # El directorio donde quieres guardar el modelo
-    # model_directory = '/var/data/sam_checkpoint/'
-    # model_path = Path(model_directory)
+    model_directory = '/var/data/sam_checkpoint/'
+    model_path = Path(model_directory)
 
-    # # Crea el directorio si no existe
-    # model_path.mkdir(parents=True, exist_ok=True)
+    # Crea el directorio si no existe
+    model_path.mkdir(parents=True, exist_ok=True)
+    
+    sam_path = '/var/data/SAM/'
+    sam_path = Path(model_directory)
+
+    # Crea el directorio si no existe
+    sam_path.mkdir(parents=True, exist_ok=True)
 
     # # El nombre del archivo para guardar el modelo
     # filename = sam_checkpoint.split('/')[-1]
@@ -62,10 +86,7 @@ def create_app():
     # # Ahora, puedes cargar el modelo utilizando la ruta del archivo descargado
     # sam_checkpoint = str(file_path)
 
-    # # Código para inicializar y utilizar tu modelo
-    # # Suponiendo que 'sam_model_registry' y 'SamAutomaticMaskGenerator' ya están definidos e importados correctamente
-    # sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
-    # sam.to(device=device)
-    # mask_generator = SamAutomaticMaskGenerator(sam)  
+    # Ejemplo de uso
+    download_and_extract_repo("https://github.com/ByungKwanLee/Full-Segment-Anything.git", sam_path)
      
     return app
