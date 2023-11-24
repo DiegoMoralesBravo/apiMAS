@@ -76,7 +76,7 @@ def create_app():
     
 
     # Clone a repository
-    Repo.clone_from('https://github.com/user/repository.git', sam_path)
+    Repo.clone_from('https://github.com/ByungKwanLee/Full-Segment-Anything.git', sam_path)
     print(os.listdir(sam_path))
      
     return app
