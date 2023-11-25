@@ -4,6 +4,8 @@ import zipfile
 import io
 from git import Repo
 import sys
+import shutil
+
 
 from flask import Flask 
 from .extensions import db
@@ -12,6 +14,25 @@ from .models import User
 from flask_cors import CORS
 # from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
 from pathlib import Path
+
+
+def remove_all(path):
+    # Check if the path exists
+    if not os.path.exists(path):
+        print("Path does not exist:", path)
+        return
+
+    # Iterate over all files and directories in the specified path
+    for filename in os.listdir(path):
+        file_path = os.path.join(path, filename)
+
+        # Check if it's a file or a directory
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            # It's a file or a symlink, remove it
+            os.unlink(file_path)
+        elif os.path.isdir(file_path):
+            # It's a directory, remove it and all its contents
+            shutil.rmtree(file_path)
 
 def create_app():
     
@@ -48,9 +69,12 @@ def create_app():
 
     # Crea el directorio si no existe
     model_path.mkdir(parents=True, exist_ok=True)
-    
+
     sam_path = '/var/data/SAM/'
     sam_path = Path(model_directory)
+
+    # Replace '/path/to/directory' with the path of the directory you want to clear
+    remove_all(sam_path)
 
     # Crea el directorio si no existe
     sam_path.mkdir(parents=True, exist_ok=True)
@@ -74,7 +98,7 @@ def create_app():
     # sam_checkpoint = str(file_path)
 
     # Ejemplo de uso
-    
+
 
     # Clone a repository
     Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', sam_path)
