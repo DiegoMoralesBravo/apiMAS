@@ -2,6 +2,7 @@ from flask import Blueprint, redirect, url_for, request, jsonify
 from .extensions import db
 from .models import User
 from flask_cors import CORS
+from test import testChido
 
 main = Blueprint('main', __name__)
 
@@ -9,7 +10,7 @@ main = Blueprint('main', __name__)
 def index():
     users = User.query.all()
     users_list_html = [f"<li>{ user.email }</li>" for user in users]
-    return f"<ul>{''.join(users_list_html)}</ul>"
+    return f"<ul>{testChido()}</ul>"
 
 @main.route('/add', methods=['POST'])
 def add():
