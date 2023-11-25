@@ -70,14 +70,14 @@ def create_app():
     # Crea el directorio si no existe
     model_path.mkdir(parents=True, exist_ok=True)
 
-    sam_path = '/var/data/SAM/'
-    sam_path = Path(model_directory)
+    # sam_path = '/var/data/SAM/'
+    # sam_path = Path(model_directory)
 
-    # Replace '/path/to/directory' with the path of the directory you want to clear
-    remove_all(sam_path)
+    # # Replace '/path/to/directory' with the path of the directory you want to clear
+    # remove_all(sam_path)
 
-    # Crea el directorio si no existe
-    sam_path.mkdir(parents=True, exist_ok=True)
+    # # Crea el directorio si no existe
+    # sam_path.mkdir(parents=True, exist_ok=True)
 
     # # El nombre del archivo para guardar el modelo
     # filename = sam_checkpoint.split('/')[-1]
@@ -100,10 +100,15 @@ def create_app():
     # Ejemplo de uso
 
 
+    # Get the current working directory
+    current_directory = os.getcwd()
+
+    # Print the current working directory
+    print("Current working directory:", current_directory)
+
     # Clone a repository
-    Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', sam_path)
-    print(os.listdir(sam_path))
-    sys.path.append(sam_path)
+    Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', current_directory)
+    print(os.listdir(current_directory))
 
     from test import testChido
 
