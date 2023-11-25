@@ -102,6 +102,9 @@ def create_app():
     
     # Nombre del nuevo directorio
     new_folder_name = "SAM"
+    
+    new_folder_path = os.path.join(current_directory, new_folder_name)
+
     # Crear el nuevo directorio
     try:
         os.mkdir(new_folder_path)
@@ -111,7 +114,6 @@ def create_app():
         
         
     # Ruta completa del nuevo directorio
-    new_folder_path = os.path.join(current_directory, new_folder_name)
     remove_files_in_directory(new_folder_path)
 
 
