@@ -102,17 +102,19 @@ def create_app():
     
     # Nombre del nuevo directorio
     new_folder_name = "SAM"
-
-    # Ruta completa del nuevo directorio
-    new_folder_path = os.path.join(current_directory, new_folder_name)
-    remove_files_in_directory(new_folder_path)
-
     # Crear el nuevo directorio
     try:
         os.mkdir(new_folder_path)
         print(f"Directorio creado: {new_folder_path}")
     except FileExistsError:
         print(f"El directorio ya existe: {new_folder_path}")
+        
+        
+    # Ruta completa del nuevo directorio
+    new_folder_path = os.path.join(current_directory, new_folder_name)
+    remove_files_in_directory(new_folder_path)
+
+
 
     # Clone a repository
     Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', new_folder_path)
