@@ -105,9 +105,22 @@ def create_app():
 
     # Print the current working directory
     print("Current working directory:", current_directory)
+    
+    # Nombre del nuevo directorio
+    new_folder_name = "SAM"
+
+    # Ruta completa del nuevo directorio
+    new_folder_path = os.path.join(current_directory, new_folder_name)
+
+    # Crear el nuevo directorio
+    try:
+        os.mkdir(new_folder_path)
+        print(f"Directorio creado: {new_folder_path}")
+    except FileExistsError:
+        print(f"El directorio ya existe: {new_folder_path}")
 
     # Clone a repository
-    Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', current_directory)
+    Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', new_folder_path)
     print(os.listdir(current_directory))
 
     from test import testChido
