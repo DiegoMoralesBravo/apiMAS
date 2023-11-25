@@ -117,7 +117,7 @@ def create_app():
     remove_files_in_directory(new_folder_path)
 
 
-
+    print('TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST')
     # Clone a repository
     Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', new_folder_path)
     print(os.listdir(current_directory))
