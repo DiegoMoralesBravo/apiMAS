@@ -24,7 +24,7 @@ def remove_files_in_directory(directory):
                 os.unlink(file_path)
             elif os.path.isdir(file_path):
                 # If you want to remove subdirectories as well, uncomment the following line
-                # shutil.rmtree(file_path)
+                shutil.rmtree(file_path)
         except Exception as e:
             print(f'Failed to delete {file_path}. Reason: {e}')
 
