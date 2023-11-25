@@ -16,23 +16,17 @@ from flask_cors import CORS
 from pathlib import Path
 
 
-def remove_all(path):
-    # Check if the path exists
-    if not os.path.exists(path):
-        print("Path does not exist:", path)
-        return
-
-    # Iterate over all files and directories in the specified path
-    for filename in os.listdir(path):
-        file_path = os.path.join(path, filename)
-
-        # Check if it's a file or a directory
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            # It's a file or a symlink, remove it
-            os.unlink(file_path)
-        elif os.path.isdir(file_path):
-            # It's a directory, remove it and all its contents
-            shutil.rmtree(file_path)
+def remove_files_in_directory(directory):
+    for filename in os.listdir(directory):
+        file_path = os.path.join(directory, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                # If you want to remove subdirectories as well, uncomment the following line
+                # shutil.rmtree(file_path)
+        except Exception as e:
+            print(f'Failed to delete {file_path}. Reason: {e}')
 
 def create_app():
     
@@ -111,6 +105,7 @@ def create_app():
 
     # Ruta completa del nuevo directorio
     new_folder_path = os.path.join(current_directory, new_folder_name)
+    remove_files_in_directory(new_folder_path)
 
     # Crear el nuevo directorio
     try:
