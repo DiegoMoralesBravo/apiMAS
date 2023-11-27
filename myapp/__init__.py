@@ -73,11 +73,9 @@ def create_app():
     Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', new_folder_path)
     print(os.listdir(current_directory))
     
-    directorio_sam = os.path.join(os.getcwd(), "SAM")
-
     # Agregar el directorio al sys.path
-    if directorio_sam not in sys.path:
-        sys.path.append(directorio_sam)
+    if new_folder_path not in sys.path:
+        sys.path.append(new_folder_path)
 
     sam_checkpoint = 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth'
 
