@@ -88,10 +88,11 @@ def create_app():
     checkpoint = os.path.join('/var/data', filename)
 
 
-    # response = requests.get(sam_checkpoint)
-    # response.raise_for_status()  # Verificar que la descarga fue exitosa
-    # with open(checkpoint, 'wb') as f:
-    #     f.write(response.content)
-    # print("Descarga completada.")
+    with requests.get(sam_checkpoint, stream=True) as response:
+        response.raise_for_status()
+        with open(checkpoint, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192): 
+                f.write(chunk)
+    print("Descarga completada.")
 
     return app
