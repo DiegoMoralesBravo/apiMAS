@@ -51,53 +51,53 @@ def create_app():
         db.session.add(new_user)
         db.session.commit()
 
-    # # Get the current working directory
-    # current_directory = os.getcwd()
+    # Get the current working directory
+    current_directory = os.getcwd()
 
-    # # Print the current working directory
-    # print("Current working directory:", current_directory)
+    # Print the current working directory
+    print("Current working directory:", current_directory)
     
-    # # Nombre del nuevo directorio
-    # new_folder_name = "SAM"
+    # Nombre del nuevo directorio
+    new_folder_name = "SAM"
     
-    # new_folder_path = os.path.join(current_directory, new_folder_name)
+    new_folder_path = os.path.join(current_directory, new_folder_name)
 
-    # # Crear el nuevo directorio
-    # try:
-    #     os.mkdir(new_folder_path)
-    #     print(f"Directorio creado: {new_folder_path}")
-    # except FileExistsError:
-    #     print(f"El directorio ya existe: {new_folder_path}")
+    # Crear el nuevo directorio
+    try:
+        os.mkdir(new_folder_path)
+        print(f"Directorio creado: {new_folder_path}")
+    except FileExistsError:
+        print(f"El directorio ya existe: {new_folder_path}")
         
         
-    # # Ruta completa del nuevo directorio
-    # remove_files_in_directory(new_folder_path)
+    # Ruta completa del nuevo directorio
+    remove_files_in_directory(new_folder_path)
 
 
-    # print('TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST')
-    # # Clone a repository
-    # Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', new_folder_path)
-    # print(os.listdir(current_directory))
+    print('TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST')
+    # Clone a repository
+    Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', new_folder_path)
+    print(os.listdir(current_directory))
     
-    # directorio_sam = os.path.join(os.getcwd(), "SAM")
+    directorio_sam = os.path.join(os.getcwd(), "SAM")
 
-    # # Agregar el directorio al sys.path
-    # if directorio_sam not in sys.path:
-    #     sys.path.append(directorio_sam)
+    # Agregar el directorio al sys.path
+    if directorio_sam not in sys.path:
+        sys.path.append(directorio_sam)
 
-    # sam_checkpoint = 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth'
+    sam_checkpoint = 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth'
 
-    # # # El nombre del archivo para guardar el modelo
-    # filename = sam_checkpoint.split('/')[-1]
+    # # El nombre del archivo para guardar el modelo
+    filename = sam_checkpoint.split('/')[-1]
 
-    # # file_path = model_path / filename
-    # checkpoint = os.path.join(directorio_sam, filename)
+    # file_path = model_path / filename
+    checkpoint = os.path.join(directorio_sam, filename)
 
 
-    # response = requests.get(sam_checkpoint)
-    # response.raise_for_status()  # Verificar que la descarga fue exitosa
-    # with open(checkpoint, 'wb') as f:
-    #     f.write(response.content)
-    # print("Descarga completada.")
+    response = requests.get(sam_checkpoint)
+    response.raise_for_status()  # Verificar que la descarga fue exitosa
+    with open(checkpoint, 'wb') as f:
+        f.write(response.content)
+    print("Descarga completada.")
 
     return app
