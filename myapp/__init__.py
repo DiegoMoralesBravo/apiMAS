@@ -1,20 +1,14 @@
 import os
 import requests
-import zipfile
-import io
 from git import Repo
 import sys
 import shutil
-
-
 from flask import Flask 
 from .extensions import db
 from .routes import main
 from .models import User
 from flask_cors import CORS
 # from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
-from pathlib import Path
-
 
 def remove_files_in_directory(directory):
     for filename in os.listdir(directory):
