@@ -6,7 +6,10 @@ import sys
 import os
 main = Blueprint('main', __name__)
 
-print('funcionaaaaaaaaaa')
+from test import testChido
+from build_sam import sam_model_registry
+
+sam = sam_model_registry['vit_b'](checkpoint='/var/data/sam_vit_b_01ec64.pth').cpu()
 
 x = 20
 

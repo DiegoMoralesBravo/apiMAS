@@ -92,17 +92,4 @@ def create_app():
             for chunk in response.iter_content(chunk_size=8192): 
                 f.write(chunk)
     print("Descarga completada.")
-    
-    print(os.listdir('/var/data'))
-    print("Test 1.")
-
-    
-    from test import testChido
-    from build_sam import sam_model_registry
-
-
-    sam = sam_model_registry['vit_b'](checkpoint='/var/data/sam_vit_b_01ec64.pth').cpu()
-
-    print("Test 2.")
-
     return app
