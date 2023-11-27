@@ -6,9 +6,18 @@ import sys
 import os
 main = Blueprint('main', __name__)
 
+print('funcionaaaaaaaaaa')
+
+x = 20
+
 @main.route('/')
 def index():
 
+    print(x)
+    print(x)
+    print(x)
+    print(x)
+    print(x)
 
     # users = User.query.all()
     # users_list_html = [f"<li>{ user.email }</li>" for user in users]
