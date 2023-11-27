@@ -85,7 +85,7 @@ def create_app():
     filename = sam_checkpoint.split('/')[-1]
 
     # file_path = model_path / filename
-    checkpoint = os.path.join('var/data', filename)
+    checkpoint = os.path.join('/var/data', filename)
 
 
     response = requests.get(sam_checkpoint)
