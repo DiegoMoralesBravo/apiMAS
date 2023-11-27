@@ -85,13 +85,13 @@ def create_app():
     filename = sam_checkpoint.split('/')[-1]
 
     # file_path = model_path / filename
-    checkpoint = os.path.join(directorio_sam, filename)
+    checkpoint = os.path.join('var/data', filename)
 
 
-    # response = requests.get(sam_checkpoint)
-    # response.raise_for_status()  # Verificar que la descarga fue exitosa
-    # with open(checkpoint, 'wb') as f:
-    #     f.write(response.content)
-    # print("Descarga completada.")
+    response = requests.get(sam_checkpoint)
+    response.raise_for_status()  # Verificar que la descarga fue exitosa
+    with open(checkpoint, 'wb') as f:
+        f.write(response.content)
+    print("Descarga completada.")
 
     return app
