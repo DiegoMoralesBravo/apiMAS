@@ -8,17 +8,11 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    directorio_sam = os.path.join(os.getcwd(), "SAM")
-    
-    # Agregar el directorio al sys.path
-    if directorio_sam not in sys.path:
-        sys.path.append(directorio_sam)
 
-    from test import testChido
 
     # users = User.query.all()
     # users_list_html = [f"<li>{ user.email }</li>" for user in users]
-    return f"<ul>{testChido()}</ul>"
+    return f"<ul>{'hola'}</ul>"
 
 @main.route('/add', methods=['POST'])
 def add():
