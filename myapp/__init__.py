@@ -1,6 +1,5 @@
 import os
 import requests
-from git import Repo
 import sys
 import shutil
 from flask import Flask 
@@ -45,38 +44,6 @@ def create_app():
         db.session.add(new_user)
         db.session.commit()
 
-    # Get the current working directory
-    current_directory = os.getcwd()
-
-    # Print the current working directory
-    print("Current working directory:", current_directory)
-    
-    # Nombre del nuevo directorio
-    new_folder_name = "SAM"
-    
-    new_folder_path = os.path.join(current_directory, new_folder_name)
-
-    # Crear el nuevo directorio
-    try:
-        os.mkdir(new_folder_path)
-        print(f"Directorio creado: {new_folder_path}")
-    except FileExistsError:
-        print(f"El directorio ya existe: {new_folder_path}")
-        
-        
-    # Ruta completa del nuevo directorio
-    remove_files_in_directory(new_folder_path)
-
-
-    print('TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST')
-    # Clone a repository
-    Repo.clone_from('https://github.com/DiegoMoralesBravo/Full-Segment-Anything.git', new_folder_path)
-    print(os.listdir(new_folder_path))
-    
-    # # Agregar el directorio al sys.path
-    # if new_folder_path not in sys.path:
-    #     sys.path.append(new_folder_path)
-
     sam_checkpoint = 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth'
 
     # # El nombre del archivo para guardar el modelo
@@ -84,7 +51,6 @@ def create_app():
 
     # file_path = model_path / filename
     checkpoint = os.path.join('/var/data', filename)
-
 
     with requests.get(sam_checkpoint, stream=True) as response:
         response.raise_for_status()

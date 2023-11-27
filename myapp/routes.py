@@ -1,3 +1,4 @@
+from test import testChido
 from flask import Blueprint, redirect, url_for, request, jsonify
 from .extensions import db
 from .models import User
@@ -5,20 +6,9 @@ from flask_cors import CORS
 import sys
 import os
 main = Blueprint('main', __name__)
+# from build_sam import sam_model_registry
 
-# Get the current working directory
-current_directory = os.getcwd()
-
-new_folder_path = os.path.join(current_directory, 'SAM')
-    
-# Agregar el directorio al sys.path
-if new_folder_path not in sys.path:
-    sys.path.append(new_folder_path)
-
-from test import testChido
-from build_sam import sam_model_registry
-
-sam = sam_model_registry['vit_b'](checkpoint='/var/data/sam_vit_b_01ec64.pth').cpu()
+# sam = sam_model_registry['vit_b'](checkpoint='/var/data/sam_vit_b_01ec64.pth').cpu()
 
 x = 20
 
