@@ -11,15 +11,7 @@ current_directory = os.getcwd()
 
 # Print the current working directory
 print("Current working directory:", current_directory)
-
-# Nombre del nuevo directorio
-new_folder_name = "SAM"
-
-new_folder_path = os.path.join(current_directory, new_folder_name)
-    
-# Agregar el directorio al sys.path
-if new_folder_path not in sys.path:
-    sys.path.append(new_folder_path)
+sys.path.append('~/project/src/SAM')
 
 from test import testChido
 from build_sam import sam_model_registry
