@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from utils.utils import show_masks
 from build_sam import sam_model_registry
 
-def testChido():
+def generateMask():
     print(os.listdir('/var/data'))
 
     # sam = sam_model_registry['vit_b'](checkpoint='/var/data/sam_vit_b_01ec64.pth').cpu()

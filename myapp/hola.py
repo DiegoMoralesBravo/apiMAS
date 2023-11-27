@@ -1,0 +1,2 @@
+def diego():
+    print('asdad')

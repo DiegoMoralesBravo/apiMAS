@@ -1,4 +1,4 @@
-from test import testChido
+from mask import generateMask
 from flask import Blueprint, redirect, url_for, request, jsonify
 from .extensions import db
 from .models import User
@@ -23,7 +23,7 @@ def index():
 
     # users = User.query.all()
     # users_list_html = [f"<li>{ user.email }</li>" for user in users]
-    return f"<ul>{'hola'}</ul>"
+    return f"<ul>{generateMask()}</ul>"
 
 @main.route('/add', methods=['POST'])
 def add():
