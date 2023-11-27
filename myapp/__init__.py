@@ -85,7 +85,7 @@ def create_app():
     if directorio_sam not in sys.path:
         sys.path.append(directorio_sam)
 
-    sam_checkpoint = 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth'
+    sam_checkpoint = 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth'
 
     # # El nombre del archivo para guardar el modelo
     filename = sam_checkpoint.split('/')[-1]
