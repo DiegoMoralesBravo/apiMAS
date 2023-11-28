@@ -1,4 +1,4 @@
-from my_module import my_function
+from .my_module import my_function
 from flask import Blueprint, redirect, url_for, request, jsonify
 from .extensions import db
 from .models import User
