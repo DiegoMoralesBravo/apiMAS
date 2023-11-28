@@ -20,9 +20,8 @@ x = 20
 @main.route('/')
 def index():
 
-
     # image upload
-    img = np.array(Image.open("figure/test.jpg"))
+    img = np.array(Image.open("/opt/render/project/src/myapp/figure/test.jpg"))
     masks = auto_to_mask.generate(img)
     print(masks)
 
