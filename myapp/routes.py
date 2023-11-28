@@ -1,4 +1,3 @@
-from .my_module import my_function
 from flask import Blueprint, redirect, url_for, request, jsonify
 from .extensions import db
 from .models import User
@@ -6,9 +5,12 @@ from flask_cors import CORS
 import sys
 import os
 main = Blueprint('main', __name__)
-# from build_sam import sam_model_registry
+from .build_sam import sam_model_registry
+from .mask_generator import SamMaskGenerator
 
-# sam = sam_model_registry['vit_b'](checkpoint='/var/data/sam_vit_b_01ec64.pth').cpu()
+
+sam = sam_model_registry['vit_b'](checkpoint='/var/data/sam_vit_b_01ec64.pth').cpu()
+# auto_to_mask = SamMaskGenerator(sam, stability_score_thresh=0.8)
 
 x = 20
 
@@ -23,7 +25,7 @@ def index():
 
     # users = User.query.all()
     # users_list_html = [f"<li>{ user.email }</li>" for user in users]
-    return f"<ul>{my_function()}</ul>"
+    return f"<ul>{'funciona'}</ul>"
 
 @main.route('/add', methods=['POST'])
 def add():
