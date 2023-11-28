@@ -17,7 +17,8 @@ from .prompt_encoder import PromptEncoder
 
 # by LBK EDIT
 from torchvision.ops.boxes import batched_nms
-from utils.amg import (
+
+from ..utils.amg import (
     MaskData,
     batched_mask_to_box,
     calculate_stability_score,
