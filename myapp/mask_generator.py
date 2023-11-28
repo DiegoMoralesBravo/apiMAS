@@ -11,8 +11,8 @@ from torchvision.ops.boxes import batched_nms, box_area  # type: ignore
 from typing import Any, Dict, List, Optional, Tuple
 
 from .modeling import Sam
-from predictor import SamPredictor
-from utils.amg import (
+from .predictor import SamPredictor
+from .utils.amg import (
     MaskData,
     area_from_rle,
     batch_iterator,
