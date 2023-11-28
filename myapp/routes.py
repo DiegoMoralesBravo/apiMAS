@@ -7,21 +7,24 @@ import os
 main = Blueprint('main', __name__)
 from .build_sam import sam_model_registry
 from .mask_generator import SamMaskGenerator
+import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image
 
 
 sam = sam_model_registry['vit_b'](checkpoint='/var/data/sam_vit_b_01ec64.pth').cpu()
-# auto_to_mask = SamMaskGenerator(sam, stability_score_thresh=0.8)
+auto_to_mask = SamMaskGenerator(sam, stability_score_thresh=0.8)
 
 x = 20
 
 @main.route('/')
 def index():
 
-    print(x)
-    print(x)
-    print(x)
-    print(x)
-    print(x)
+
+    # image upload
+    img = np.array(Image.open("figure/test.jpg"))
+    masks = auto_to_mask.generate(img)
+    print(masks)
 
     # users = User.query.all()
     # users_list_html = [f"<li>{ user.email }</li>" for user in users]
