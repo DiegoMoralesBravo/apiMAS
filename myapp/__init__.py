@@ -42,18 +42,4 @@ def create_app():
         db.session.add(new_user)
         db.session.commit()
 
-    # sam_checkpoint = 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth'
-
-    # # # El nombre del archivo para guardar el modelo
-    # filename = sam_checkpoint.split('/')[-1]
-
-    # # file_path = model_path / filename
-    # checkpoint = os.path.join('/var/data', filename)
-
-    # with requests.get(sam_checkpoint, stream=True) as response:
-    #     response.raise_for_status()
-    #     with open(checkpoint, 'wb') as f:
-    #         for chunk in response.iter_content(chunk_size=8192): 
-    #             f.write(chunk)
-    # print("Descarga completada.")
     return app
