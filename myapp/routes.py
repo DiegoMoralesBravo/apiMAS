@@ -144,28 +144,31 @@ def remove_plant():
 def update_last_watered_time():
     data = request.get_json()
     print(data)
-    plant_id = data.get('plantId')
+    id = data.get('plantId')
     new_last_watered_time = data.get('lastWateredTime')
     print(new_last_watered_time)
     # Verificar que tanto plant_id como new_last_watered_time se proporcionen
-    if not plant_id or not new_last_watered_time:
+    if not id or not new_last_watered_time:
         return jsonify({"message": "Missing data"}), 400
-
+    print('Pase')
     # Convertir la fecha en string a un objeto datetime
     try:
         new_last_watered_time = datetime.fromisoformat(new_last_watered_time)
+        print('Pase3')
     except ValueError:
+        print('Pase2')
         return jsonify({"message": "Invalid date format"}), 400
     print(new_last_watered_time)
 
     # Buscar la planta y actualizar el tiempo de último riego
-    print(plant_id)
-    planta = PlantEntry.query.get(plant_id)
+    print(id)
+    planta = PlantEntry.query.filter_by(id=id).first()
     print(planta)
     if planta is None:
         return jsonify({"message": "Plant not found"}), 404
 
     try:
+        print('assssssssssssss')
         planta.lastWateredTime = new_last_watered_time
         db.session.commit()
         return jsonify({"message": "Last watered time updated successfully"}), 200
