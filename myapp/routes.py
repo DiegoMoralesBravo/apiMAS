@@ -14,7 +14,8 @@ def add():
     # Get data from the request
     data = request.get_json()  # Obtener el objeto JSON de la solicitud
     email = data['email']
-    occupation = data['occupation']
+    # occupation = data['occupation']
+    occupation = 'test'
     password = data['password']
     # Check if user with the given email already exists
     existing_user = User.query.filter_by(email=email).first()
