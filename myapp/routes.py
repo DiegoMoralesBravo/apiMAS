@@ -143,9 +143,10 @@ def remove_plant():
 @main.route('/updateLastWateredTime', methods=['POST'])
 def update_last_watered_time():
     data = request.get_json()
+    print(data)
     plant_id = data.get('plantId')
     new_last_watered_time = data.get('lastWateredTime')
-
+    print(new_last_watered_time)
     # Verificar que tanto plant_id como new_last_watered_time se proporcionen
     if not plant_id or not new_last_watered_time:
         return jsonify({"message": "Missing data"}), 400
@@ -155,9 +156,12 @@ def update_last_watered_time():
         new_last_watered_time = datetime.fromisoformat(new_last_watered_time)
     except ValueError:
         return jsonify({"message": "Invalid date format"}), 400
+    print(new_last_watered_time)
 
     # Buscar la planta y actualizar el tiempo de último riego
+    print(plant_id)
     planta = PlantEntry.query.get(plant_id)
+    print(planta)
     if planta is None:
         return jsonify({"message": "Plant not found"}), 404
 
