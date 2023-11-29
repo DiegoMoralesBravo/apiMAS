@@ -82,3 +82,27 @@ def add_plant():
 
     # Si todo es exitoso, devolver un mensaje de éxito
     return jsonify({"message": "Plant added successfully", "plant_id": new_plant.id}), 201
+
+@main.route('/getUserPlants', methods=['GET'])
+def get_user_plants():
+    usuario = request.args.get('user')
+
+    if not usuario:
+        return jsonify({"message": "No user provided"}), 400
+
+    try:
+        # Buscar todas las plantas para el usuario dado
+        plantas = PlantEntry.query.filter_by(usuario=usuario).all()
+        plantas_data = [
+            {
+                "nombre": planta.nombre,
+                "frecuenciaRiego": planta.frecuenciaRiego,
+                "descripcion": planta.descripcion,
+                "recomendaciones": planta.recomendaciones
+            } for planta in plantas
+        ]
+
+        return jsonify(plantas_data), 200
+
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
