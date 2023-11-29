@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, url_for, request, jsonify
 from .extensions import db
 from .models import User
+from .models import PlantEntry
 from flask_cors import CORS
 main = Blueprint('main', __name__)
 
@@ -50,10 +51,34 @@ def userValidation():
     return jsonify({"message": "User validated successfully", "user": email}), 200
 
 
-@main.route('/generation', methods=['POST'])
-def generation():
-    # Get data from the request
+@main.route('/addPlant', methods=['POST'])
+def add_plant():
+    # Obtener el objeto JSON de la solicitud
     data = request.get_json()
-    
-    
-    return jsonify({"message": "Test completed"}), 200
+
+    # Extraer los datos de la planta del JSON
+    usuario = data['usuario']
+    nombre = data['nombre']
+    frecuenciaRiego = data['frecuenciaRiego']
+    descripcion = data['descripcion']
+    recomendaciones = data['recomendaciones']
+
+    # Crear una nueva instancia de PlantEntry
+    new_plant = PlantEntry(usuario=usuario, nombre=nombre, 
+                           frecuenciaRiego=frecuenciaRiego, 
+                           descripcion=descripcion, 
+                           recomendaciones=recomendaciones)
+
+    # Agregar la nueva planta a la base de datos
+    db.session.add(new_plant)
+
+    # Intentar guardar en la base de datos y manejar posibles excepciones
+    try:
+        db.session.commit()
+    except Exception as e:
+        # Si hay un error, devolver un mensaje de error
+        db.session.rollback()
+        return jsonify({"message": str(e)}), 500
+
+    # Si todo es exitoso, devolver un mensaje de éxito
+    return jsonify({"message": "Plant added successfully", "plant_id": new_plant.id}), 201
