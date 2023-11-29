@@ -1,4 +1,5 @@
-from .extensions import db 
+from .extensions import db
+from datetime import datetime
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -15,3 +16,4 @@ class PlantEntry(db.Model):
     frecuenciaRiego = db.Column(db.Integer)
     descripcion = db.Column(db.Text)
     recomendaciones = db.Column(db.Text)
+    lastWateredTime = db.Column(db.DateTime, default=datetime.utcnow)

@@ -62,12 +62,14 @@ def add_plant():
     frecuenciaRiego = data['frecuenciaRiego']
     descripcion = data['descripcion']
     recomendaciones = data['recomendaciones']
+    lastWateredTime = data['lastWateredTime']
 
     # Crear una nueva instancia de PlantEntry
     new_plant = PlantEntry(usuario=usuario, nombre=nombre, 
                            frecuenciaRiego=frecuenciaRiego, 
                            descripcion=descripcion, 
-                           recomendaciones=recomendaciones)
+                           recomendaciones=recomendaciones,
+                           lastWateredTime=lastWateredTime)
 
     # Agregar la nueva planta a la base de datos
     db.session.add(new_plant)
@@ -121,7 +123,6 @@ def remove_plant():
 
     # Buscar la entrada de planta por ID
     planta = PlantEntry.query.filter_by(id=id).first()
-    
     print(planta)
 
     if planta is None:
