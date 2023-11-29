@@ -106,3 +106,20 @@ def get_user_plants():
 
     except Exception as e:
         return jsonify({"message": str(e)}), 500
+    
+
+@main.route('/removePlant/<int:plant_id>', methods=['DELETE'])
+def remove_plant(plant_id):
+    # Buscar la entrada de planta por ID
+    planta = PlantEntry.query.get(plant_id)
+
+    if planta is None:
+        return jsonify({"message": "Plant not found"}), 404
+
+    try:
+        db.session.delete(planta)
+        db.session.commit()
+        return jsonify({"message": "Plant successfully deleted"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": str(e)}), 500
