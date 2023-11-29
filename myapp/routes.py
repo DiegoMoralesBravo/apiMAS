@@ -97,10 +97,12 @@ def get_user_plants():
         plantas = PlantEntry.query.filter_by(usuario=usuario).all()
         plantas_data = [
             {
+                "id": planta.id,
                 "nombre": planta.nombre,
                 "frecuenciaRiego": planta.frecuenciaRiego,
                 "descripcion": planta.descripcion,
-                "recomendaciones": planta.recomendaciones
+                "recomendaciones": planta.recomendaciones,
+                "lastWateredTime": planta.lastWateredTime
             } for planta in plantas
         ]
 
