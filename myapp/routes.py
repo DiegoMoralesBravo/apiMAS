@@ -3,7 +3,6 @@ from .extensions import db
 from .models import User
 from .models import PlantEntry
 from flask_cors import CORS
-from flask_cors import cross_origin
 main = Blueprint('main', __name__)
 
 @main.route('/')
@@ -109,12 +108,17 @@ def get_user_plants():
         return jsonify({"message": str(e)}), 500
     
 
-@main.route('/removePlant/<int:plant_id>', methods=['DELETE'])
-@cross_origin(origin='https://frontmastest.onrender.com')
-def remove_plant(plant_id):
+@main.route('/removePlant', methods=['POST'])
+def remove_plant():
+    # Extraer plant_id del cuerpo de la solicitud
+    data = request.get_json()
+    plant_id = data.get('plantId')
+
+    if not plant_id:
+        return jsonify({"message": "Plant ID is missing"}), 400
+
     # Buscar la entrada de planta por ID
     planta = PlantEntry.query.get(plant_id)
-
     if planta is None:
         return jsonify({"message": "Plant not found"}), 404
 
