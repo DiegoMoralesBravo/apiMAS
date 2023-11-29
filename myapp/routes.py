@@ -152,13 +152,13 @@ def update_last_watered_time():
         return jsonify({"message": "Missing data"}), 400
     print('Pase')
     # Convertir la fecha en string a un objeto datetime
-    try:
-        new_last_watered_time = datetime.fromisoformat(new_last_watered_time)
-        print('Pase3')
-    except ValueError:
-        print('Pase2')
-        return jsonify({"message": "Invalid date format"}), 400
-    print(new_last_watered_time)
+    # try:
+    #     new_last_watered_time = datetime.fromisoformat(new_last_watered_time)
+    #     print('Pase3')
+    # except ValueError:
+    #     print('Pase2')
+    #     return jsonify({"message": "Invalid date format"}), 400
+    # print(new_last_watered_time)
 
     # Buscar la planta y actualizar el tiempo de último riego
     print(id)
