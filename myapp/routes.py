@@ -112,13 +112,18 @@ def get_user_plants():
 def remove_plant():
     # Extraer plant_id del cuerpo de la solicitud
     data = request.get_json()
-    plant_id = data.get('plantId')
-
-    if not plant_id:
+    print(data)
+    id = data.get('plantId')
+    print(data)
+    print(id)
+    if not id:
         return jsonify({"message": "Plant ID is missing"}), 400
 
     # Buscar la entrada de planta por ID
-    planta = PlantEntry.query.get(plant_id)
+    planta = PlantEntry.query.filter_by(id=id).first()
+    
+    print(planta)
+
     if planta is None:
         return jsonify({"message": "Plant not found"}), 404
 
