@@ -3,6 +3,8 @@ from .extensions import db
 from .models import User
 from .models import PlantEntry
 from flask_cors import CORS
+from datetime import datetime
+
 main = Blueprint('main', __name__)
 
 @main.route('/')
@@ -134,6 +136,35 @@ def remove_plant():
         db.session.delete(planta)
         db.session.commit()
         return jsonify({"message": "Plant successfully deleted"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"message": str(e)}), 500
+    
+@main.route('/updateLastWateredTime', methods=['POST'])
+def update_last_watered_time():
+    data = request.get_json()
+    plant_id = data.get('plantId')
+    new_last_watered_time = data.get('lastWateredTime')
+
+    # Verificar que tanto plant_id como new_last_watered_time se proporcionen
+    if not plant_id or not new_last_watered_time:
+        return jsonify({"message": "Missing data"}), 400
+
+    # Convertir la fecha en string a un objeto datetime
+    try:
+        new_last_watered_time = datetime.fromisoformat(new_last_watered_time)
+    except ValueError:
+        return jsonify({"message": "Invalid date format"}), 400
+
+    # Buscar la planta y actualizar el tiempo de último riego
+    planta = PlantEntry.query.get(plant_id)
+    if planta is None:
+        return jsonify({"message": "Plant not found"}), 404
+
+    try:
+        planta.lastWateredTime = new_last_watered_time
+        db.session.commit()
+        return jsonify({"message": "Last watered time updated successfully"}), 200
     except Exception as e:
         db.session.rollback()
         return jsonify({"message": str(e)}), 500
