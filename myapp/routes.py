@@ -85,7 +85,7 @@ def add_plant():
 
 @main.route('/getUserPlants', methods=['GET'])
 def get_user_plants():
-    usuario = request.args.get('user')
+    usuario = request.args.get('usuario')
 
     if not usuario:
         return jsonify({"message": "No user provided"}), 400
